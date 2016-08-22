@@ -1,0 +1,9 @@
+div{
+  width: 238px;
+  border: 1px solid black;
+  height: 238px;
+  float: left;
+  margin: 0 auto;
+  text-align:center;
+  font-size: 200px;
+}
