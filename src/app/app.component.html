@@ -1,3 +1,2 @@
-<h1>
-  {{title}}
-</h1>
+<h1 [ngClass] ="{'header' :true}" >tic-tac-toe</h1>
+<div class="wrapper"><app-square *ngFor="let item of list"></app-square></div>

@@ -1,0 +1,8 @@
+.wrapper {
+  margin: 0 auto;
+  width: 40%;
+}
+.header{
+  text-align:center;
+  border-bottom: 1px dotted #d3d3d3;
+}
