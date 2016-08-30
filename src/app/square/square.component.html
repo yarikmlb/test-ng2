@@ -1,4 +1,5 @@
-<div (click)="setRandomValue()">
-  <span *ngIf="value ==='X'" [ngClass]="{cross: value ==='X'}" [ngStyle]="{'background-image': 'url(http://www.clker.com/cliparts/6/8/Z/b/2/1/tic-tac-toe-md.png)'}">{{name}}</span>
-  <span *ngIf="value==='0'" [ngClass]="{zero: value ==='0'}" [ngStyle]="{'background-image': 'url(http://www.clker.com/cliparts/6/8/Z/b/2/1/tic-tac-toe-md.png)'}">{{name}}</span>
+<div (click)="getValue()">
+  <span *ngIf="square.value === 1" [ngClass]="{cross: square.value === 1}" [ngStyle]="{'background-image': 'url(http://www.clker.com/cliparts/6/8/Z/b/2/1/tic-tac-toe-md.png)'}">{{name}}</span>
+  <span *ngIf="square.value === 0" [ngClass]="{zero: square.value === 0}" [ngStyle]="{'background-image': 'url(http://www.clker.com/cliparts/6/8/Z/b/2/1/tic-tac-toe-md.png)'}">{{name}}</span>
+  <span *ngIf="square.value === ''">{{name}}</span>
 </div>

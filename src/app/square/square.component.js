@@ -8,18 +8,24 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var core_1 = require('@angular/core');
 var SquareComponent = (function () {
     function SquareComponent() {
-        this.value = '';
+        this.set = new core_1.EventEmitter();
     }
-    SquareComponent.prototype.setRandomValue = function () {
-        if (this.value === '') {
-            this.value = 'X';
-        }
-        else if (this.value === 'X') {
-            this.value = '0';
-        }
+    SquareComponent.prototype.getValue = function () {
+        this.set.emit({ square: this.square });
+        /*if(this.value === ''){
+          this.value = 'X';
+        }else if(this.value === 'X'){
+          this.value = '0';
+        }*/
     };
     SquareComponent.prototype.ngOnInit = function () {
     };
+    __decorate([
+        core_1.Input()
+    ], SquareComponent.prototype, "square");
+    __decorate([
+        core_1.Output()
+    ], SquareComponent.prototype, "set");
     SquareComponent = __decorate([
         core_1.Component({
             moduleId: module.id,

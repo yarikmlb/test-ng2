@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 
 @Component({
   moduleId: module.id,
@@ -7,19 +7,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['square.component.css']
 })
 export class SquareComponent implements OnInit {
-  public value: string;
+
+  @Input()
+  square: any;
+
+  @Output() set: EventEmitter<any> = new EventEmitter();
+
 
   constructor() {
-    this.value = '';
-  }
-  setRandomValue() {
-    if(this.value === ''){
-      this.value = 'X'
 
+  }
+  getValue() {
+    this.set.emit({square: this.square});
+    /*if(this.value === ''){
+      this.value = 'X';
     }else if(this.value === 'X'){
       this.value = '0';
-
-    }
+    }*/
   }
 
   ngOnInit() {
