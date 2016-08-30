@@ -13,6 +13,9 @@ export class AppComponent {
   public value = '';
   public count = 0;
   public result = [];
+  public gameOver = false;
+  public circleWin = false;
+  public crossWin = false;
 
   constructor(){
     this.generateGame(9);
@@ -49,9 +52,12 @@ export class AppComponent {
       array[3].value === array[4].value && array[4].value === array[5].value && array[5].value === 1 ||
       array[6].value === array[7].value && array[7].value === array[8].value && array[8].value === 1 ||
       array[6].value === array[4].value && array[4].value === array[2].value && array[2].value === 1 ){
-      setTimeout(() => {
+      /*setTimeout(() => {
         alert("Player with X, win!!!");
-      }, 500);
+      }, 500);*/
+      this.gameOver = true;
+      this.crossWin = true;
+      this.circleWin = false;
     }else if(array[0].value === array[1].value && array[1].value === array[2].value && array[2].value === 0 ||
       array[0].value === array[3].value && array[3].value === array[6].value && array[6].value === 0 ||
       array[0].value === array[4].value && array[4].value === array[8].value && array[8].value === 0 ||
@@ -60,9 +66,12 @@ export class AppComponent {
       array[3].value === array[4].value && array[4].value === array[5].value && array[5].value === 0 ||
       array[6].value === array[7].value && array[7].value === array[8].value && array[8].value === 0 ||
       array[6].value === array[4].value && array[4].value === array[2].value && array[2].value === 0 ){
-      setTimeout(() => {
+      /*setTimeout(() => {
         alert("Player with 0, win!!!");
-      }, 500);
+      }, 500);*/
+      this.gameOver = true;
+      this.circleWin = true;
+      this.crossWin = false;
     }
   }
   playAgain(){
