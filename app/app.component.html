@@ -1,2 +1,4 @@
 <h1 [ngClass] ="{'header' :true}" >tic-tac-toe</h1>
-<div class="wrapper"><app-square *ngFor="let item of list"></app-square></div>
+<div class="wrapper">
+  <app-square *ngFor="let item of list" [square]="item" (set)="changeValue($event.square)"></app-square>
+</div>
