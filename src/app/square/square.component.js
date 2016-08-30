@@ -12,11 +12,6 @@ var SquareComponent = (function () {
     }
     SquareComponent.prototype.getValue = function () {
         this.set.emit({ square: this.square });
-        /*if(this.value === ''){
-          this.value = 'X';
-        }else if(this.value === 'X'){
-          this.value = '0';
-        }*/
     };
     SquareComponent.prototype.ngOnInit = function () {
     };

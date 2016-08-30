@@ -6,3 +6,10 @@
   text-align:center;
   border-bottom: 1px dotted #d3d3d3;
 }
+.wrapper img {
+  height: 300px;
+  width: 100%;
+}
+.wrapper h2 {
+  color: gold;
+}

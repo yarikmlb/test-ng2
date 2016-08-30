@@ -16,6 +16,7 @@ var AppComponent = (function () {
         this.gameOver = false;
         this.circleWin = false;
         this.crossWin = false;
+        this.draw = false;
         this.generateGame(9);
     }
     AppComponent.prototype.generateGame = function (count) {
@@ -27,50 +28,56 @@ var AppComponent = (function () {
         return { value: '' };
     };
     AppComponent.prototype.changeValue = function (square) {
-        if (this.count % 2 === 0 && square.value === '') {
+        if (this.count % 2 === 0 && square.value === '' && this.result.length < 9) {
             square.value = 1;
             this.count += 1;
-            this.findResult(this.list);
+            this.result.push(square);
         }
-        else if (this.count % 2 !== 0 && square.value === '') {
+        else if (this.count % 2 !== 0 && square.value === '' && this.result.length < 9) {
             square.value = 0;
             this.count += 1;
-            this.findResult(this.list);
+            this.result.push(square);
+            console.log(this.result);
         }
+        this.findResult(this.list);
     };
     AppComponent.prototype.findResult = function (array) {
-        if (array[0].value === array[1].value && array[1].value === array[2].value && array[2].value === 1 ||
+        if (this.checkCross(array)) {
+            this.gameOver = true;
+            this.crossWin = true;
+            this.circleWin = false;
+        }
+        else if (this.checkCircle(array)) {
+            this.gameOver = true;
+            this.circleWin = true;
+            this.crossWin = false;
+        }
+        else if (!this.checkCircle(array) && !this.checkCross(array) && this.result.length === 8) {
+            this.gameOver = true;
+            this.crossWin = false;
+            this.circleWin = false;
+            this.draw = true;
+        }
+    };
+    AppComponent.prototype.checkCross = function (array) {
+        return (array[0].value === array[1].value && array[1].value === array[2].value && array[2].value === 1 ||
             array[0].value === array[3].value && array[3].value === array[6].value && array[6].value === 1 ||
             array[0].value === array[4].value && array[4].value === array[8].value && array[8].value === 1 ||
             array[1].value === array[4].value && array[4].value === array[7].value && array[7].value === 1 ||
             array[2].value === array[5].value && array[5].value === array[8].value && array[8].value === 1 ||
             array[3].value === array[4].value && array[4].value === array[5].value && array[5].value === 1 ||
             array[6].value === array[7].value && array[7].value === array[8].value && array[8].value === 1 ||
-            array[6].value === array[4].value && array[4].value === array[2].value && array[2].value === 1) {
-            /*setTimeout(() => {
-              alert("Player with X, win!!!");
-            }, 500);*/
-            this.gameOver = true;
-            this.crossWin = true;
-            this.circleWin = false;
-        }
-        else if (array[0].value === array[1].value && array[1].value === array[2].value && array[2].value === 0 ||
+            array[6].value === array[4].value && array[4].value === array[2].value && array[2].value === 1);
+    };
+    AppComponent.prototype.checkCircle = function (array) {
+        return (array[0].value === array[1].value && array[1].value === array[2].value && array[2].value === 0 ||
             array[0].value === array[3].value && array[3].value === array[6].value && array[6].value === 0 ||
             array[0].value === array[4].value && array[4].value === array[8].value && array[8].value === 0 ||
             array[1].value === array[4].value && array[4].value === array[7].value && array[7].value === 0 ||
             array[2].value === array[5].value && array[5].value === array[8].value && array[8].value === 0 ||
             array[3].value === array[4].value && array[4].value === array[5].value && array[5].value === 0 ||
             array[6].value === array[7].value && array[7].value === array[8].value && array[8].value === 0 ||
-            array[6].value === array[4].value && array[4].value === array[2].value && array[2].value === 0) {
-            /*setTimeout(() => {
-              alert("Player with 0, win!!!");
-            }, 500);*/
-            this.gameOver = true;
-            this.circleWin = true;
-            this.crossWin = false;
-        }
-    };
-    AppComponent.prototype.playAgain = function () {
+            array[6].value === array[4].value && array[4].value === array[2].value && array[2].value === 0);
     };
     AppComponent = __decorate([
         core_1.Component({

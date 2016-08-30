@@ -19,11 +19,6 @@ export class SquareComponent implements OnInit {
   }
   getValue() {
     this.set.emit({square: this.square});
-    /*if(this.value === ''){
-      this.value = 'X';
-    }else if(this.value === 'X'){
-      this.value = '0';
-    }*/
   }
 
   ngOnInit() {

@@ -16,6 +16,7 @@ export class AppComponent {
   public gameOver = false;
   public circleWin = false;
   public crossWin = false;
+  public draw = false;
 
   constructor(){
     this.generateGame(9);
@@ -32,49 +33,54 @@ export class AppComponent {
   }
 
   changeValue(square){
-    if(this.count % 2 === 0 && square.value === ''){
+    if(this.count % 2 === 0 && square.value === '' && this.result.length < 9){
       square.value = 1;
       this.count += 1;
-      this.findResult(this.list);
-    }else if(this.count % 2 !== 0 && square.value === ''){
+      this.result.push(square);
+    }else if(this.count % 2 !== 0 && square.value === '' && this.result.length < 9){
       square.value = 0;
       this.count +=1;
-      this.findResult(this.list);
+      this.result.push(square);
+      console.log(this.result);
     }
+    this.findResult(this.list);
   }
 
   findResult(array){
-    if(array[0].value === array[1].value && array[1].value === array[2].value && array[2].value === 1 ||
-      array[0].value === array[3].value && array[3].value === array[6].value && array[6].value === 1 ||
-      array[0].value === array[4].value && array[4].value === array[8].value && array[8].value === 1 ||
-      array[1].value === array[4].value && array[4].value === array[7].value && array[7].value === 1 ||
-      array[2].value === array[5].value && array[5].value === array[8].value && array[8].value === 1 ||
-      array[3].value === array[4].value && array[4].value === array[5].value && array[5].value === 1 ||
-      array[6].value === array[7].value && array[7].value === array[8].value && array[8].value === 1 ||
-      array[6].value === array[4].value && array[4].value === array[2].value && array[2].value === 1 ){
-      /*setTimeout(() => {
-        alert("Player with X, win!!!");
-      }, 500);*/
+    if(this.checkCross(array)){
       this.gameOver = true;
       this.crossWin = true;
       this.circleWin = false;
-    }else if(array[0].value === array[1].value && array[1].value === array[2].value && array[2].value === 0 ||
-      array[0].value === array[3].value && array[3].value === array[6].value && array[6].value === 0 ||
-      array[0].value === array[4].value && array[4].value === array[8].value && array[8].value === 0 ||
-      array[1].value === array[4].value && array[4].value === array[7].value && array[7].value === 0 ||
-      array[2].value === array[5].value && array[5].value === array[8].value && array[8].value === 0 ||
-      array[3].value === array[4].value && array[4].value === array[5].value && array[5].value === 0 ||
-      array[6].value === array[7].value && array[7].value === array[8].value && array[8].value === 0 ||
-      array[6].value === array[4].value && array[4].value === array[2].value && array[2].value === 0 ){
-      /*setTimeout(() => {
-        alert("Player with 0, win!!!");
-      }, 500);*/
+    }else if(this.checkCircle(array)){
       this.gameOver = true;
       this.circleWin = true;
       this.crossWin = false;
+    }else if(!this.checkCircle(array) && !this.checkCross(array) && this.result.length === 8){
+      this.gameOver = true;
+      this.crossWin = false;
+      this.circleWin = false;
+      this.draw = true;
     }
   }
-  playAgain(){
 
+  checkCross(array){
+    return (array[0].value === array[1].value && array[1].value === array[2].value && array[2].value === 1 ||
+    array[0].value === array[3].value && array[3].value === array[6].value && array[6].value === 1 ||
+    array[0].value === array[4].value && array[4].value === array[8].value && array[8].value === 1 ||
+    array[1].value === array[4].value && array[4].value === array[7].value && array[7].value === 1 ||
+    array[2].value === array[5].value && array[5].value === array[8].value && array[8].value === 1 ||
+    array[3].value === array[4].value && array[4].value === array[5].value && array[5].value === 1 ||
+    array[6].value === array[7].value && array[7].value === array[8].value && array[8].value === 1 ||
+    array[6].value === array[4].value && array[4].value === array[2].value && array[2].value === 1);
+  }
+  checkCircle(array){
+    return (array[0].value === array[1].value && array[1].value === array[2].value && array[2].value === 0 ||
+    array[0].value === array[3].value && array[3].value === array[6].value && array[6].value === 0 ||
+    array[0].value === array[4].value && array[4].value === array[8].value && array[8].value === 0 ||
+    array[1].value === array[4].value && array[4].value === array[7].value && array[7].value === 0 ||
+    array[2].value === array[5].value && array[5].value === array[8].value && array[8].value === 0 ||
+    array[3].value === array[4].value && array[4].value === array[5].value && array[5].value === 0 ||
+    array[6].value === array[7].value && array[7].value === array[8].value && array[8].value === 0 ||
+    array[6].value === array[4].value && array[4].value === array[2].value && array[2].value === 0 );
   }
 }

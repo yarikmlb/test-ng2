@@ -1,10 +1,16 @@
-<h1 [ngClass] ="{'header' :true}" >tic-tac-toe</h1>
+<h1 [ngClass] ="{'header' :true}" *ngIf="!gameOver">tic-tac-toe</h1>
+<h1 [ngClass] ="{'header' :true}" style="color: gold" *ngIf="circleWin && gameOver">Circle Win</h1>
+<h1 [ngClass] ="{'header' :true}" style="color: gold" *ngIf="crossWin && gameOver">Cross Win</h1>
+<h1 [ngClass] ="{'header' :true}" style="color: gold" *ngIf="draw && gameOver">Dead Heat</h1>
 <div class="wrapper">
-  <div *ngIf="!gameOver">
-    <app-square *ngFor="let item of list" [square]="item" (set)="changeValue($event.square)"></app-square>
+  <div *ngIf="circleWin && gameOver">
+    <img src="http://s019.radikal.ru/i635/1608/7e/6f23bf4415f5.jpg" alt="">
   </div>
-  <div *ngIf="gameOver">
-    <img src="http://s019.radikal.ru/i635/1608/7e/6f23bf4415f5.jpg" alt="" *ngIf="circleWin">
-    <img src="http://s019.radikal.ru/i643/1608/f5/e985a7797b5e.jpg" alt="" *ngIf="crossWin">
+  <div *ngIf="crossWin && gameOver">
+    <img src="http://s019.radikal.ru/i643/1608/f5/e985a7797b5e.jpg" alt="">
   </div>
+  <div *ngIf="draw && gameOver">
+    <img src="http://s015.radikal.ru/i331/1608/bf/b0272f91f03a.jpg" alt="">
+  </div>
+  <app-square *ngFor="let item of list" [square]="item" (set)="changeValue($event.square)"></app-square>
 </div>
