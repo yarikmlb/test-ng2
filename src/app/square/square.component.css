@@ -1,9 +1,22 @@
 div{
-  width: 238px;
+  width: 158px;
   border: 1px solid black;
-  height: 238px;
+  height: 158px;
   float: left;
   margin: 0 auto;
-  text-align:center;
-  font-size: 200px;
+/*  text-align:center;
+  font-size: 140px;*/
+}
+div span {
+  background-size: auto 145px;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+div span.cross {
+  background-position: -164px 5px;
+}
+div span.zero {
+  background-position: 12px 5px;
 }

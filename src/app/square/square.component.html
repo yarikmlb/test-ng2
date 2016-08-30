@@ -1,4 +1,4 @@
 <div (click)="setRandomValue()">
-  <span *ngIf="value==='X'">X</span>
-  <span *ngIf="value==='0'">0</span>
+  <span *ngIf="value ==='X'" [ngClass]="{cross: value ==='X'}" [ngStyle]="{'background-image': 'url(http://www.clker.com/cliparts/6/8/Z/b/2/1/tic-tac-toe-md.png)'}">{{name}}</span>
+  <span *ngIf="value==='0'" [ngClass]="{zero: value ==='0'}" [ngStyle]="{'background-image': 'url(http://www.clker.com/cliparts/6/8/Z/b/2/1/tic-tac-toe-md.png)'}">{{name}}</span>
 </div>
